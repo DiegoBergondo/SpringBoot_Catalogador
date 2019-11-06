@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Artículos</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2 th:if="${list.isEmpty()}">No hay artículos</h2>
+		<div th:if="${!list.isEmpty()}">
+                    <div th:if="${list[0].tipo == 0}">     
+                        <h2><label th:text=Cuadros /></h2>
+                    </div>
+                    <div th:if="${list[0].tipo == 1}">     
+                        <h2><label th:text=Libros /></h2>
+                    </div>
+                    <div th:if="${list[0].tipo == 2}">     
+                        <h2><label th:text=Música /></h2>
+                    </div>
+                    <div th:if="${list[0].tipo == 3}">     
+                        <h2><label th:text=Videojuegos /></h2>
+                    </div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Imagen</th>
+                                                <th>Título</th>
+						<th>Autor</th>
+						<th>Formato</th>
+						<th>Estado</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+                                    <tr th:each="Datosarticulosql : ${list}">
+                                        <div th:if="${Datosarticulosql.imagen != 'false'}">     
+                                            <td style="width:88px; height:66px; background-color:#cccccc;text-align:center; vertical-align:middle">
+                                                <img th:src="${Datosarticulosql.imagen}"  style="max-height:88px; max-width:66px"/>   
+                                            </td>
+                                        </div>
+                                        <div th:if="${Datosarticulosql.imagen == 'false'}">     
+                                            <td style="width:88px; height:66px; background-color:#cccccc;text-align:center; vertical-align:middle">
+                                                <img src="https://i.imgur.com/1VwI9zH.png"  style="max-height:88px; max-width:66px"/>   
+                                            </td>
+                                        </div>
+                                        <td th:text="${Datosarticulosql.titulo}">
+					<td th:text="${Datosarticulosql.autor}">
+					<td th:text="${Datosarticulosql.formato}">
+					<td th:text="${Datosarticulosql.estado}">
+					<td><a class="btn btn-info" th:href="@{/save/{id}(id=${Datosarticulosql.id})}">Ver</a></td>
+					<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${Datosarticulosql.id})}">Eliminar</a></td>
+                                    </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

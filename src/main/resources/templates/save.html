@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Artículo</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Artículo</h2>
+		<form action="#" th:action="@{/save}" th:object="${datosarticulosql}"
+			method="post">
+                        <div class="form-group">
+                            <div th:if="${datosarticulosql.imagen != 'false'}">
+                                <td style="width:320px; height:240px; background-color:#cccccc;text-align:center; vertical-align:middle">
+                                    <img th:src="${datosarticulosql.imagen}"  style="max-height:480px; max-width:360px"/>   
+                                </td>
+                            </div>
+                            <div th:if="${datosarticulosql.imagen == 'false'}">
+                                <td style="width:320px; height:240px; background-color:#cccccc;text-align:center; vertical-align:middle">
+                                    <img src="https://i.imgur.com/1VwI9zH.png"  style="max-height:480px; max-width:360px"/>   
+                                </td>
+                            </div>
+                            
+                            <input type="text" class="form-control" id="imagen" th:field="*{imagen}" name="imagen">
+                        </div>
+			<div class="form-group">
+				<label for="titulo">titulo</label> <input type="text"
+					class="form-control" id="titulo" th:field="*{titulo}" name="titulo">
+			</div>
+			<input type="hidden" th:field="*{id}" name="id" id="id">
+			<div class="form-group">
+				<label for="titulo">autor</label> <input type="text"
+					class="form-control" id="autor" th:field="*{autor}"
+					name="autor">
+			</div>
+
+			<div class="form-group">
+				<label for="titulo">formato</label> <input type="text"
+					class="form-control" id="formato" th:field="*{formato}"
+					name="formato">
+			</div>
+
+			<div class="form-group">
+				<label for="titulo">estado</label> <input type="text"
+					class="form-control" id="estado" th:field="*{estado}"
+					name="estado">
+			</div>                          
+			<button type="submit" class="btn btn-success">Guardar</button>
+		</form>
+	</div>
+</body>
+</html>
